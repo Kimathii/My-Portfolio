@@ -9,7 +9,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 const projectsData = [
   {
     name: "Framez Social App",
-    image: "/images/framez.png",
+    image: "/images/Framez.png",
     description:
       "A social mobile app built with React Native and TypeScript, featuring authentication, real-time feeds, image uploads, and Firebase backend integration.",
     skills: ["React Native", "Expo", "TypeScript", "Firebase", "Cloudinary"],
