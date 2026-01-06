@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { LuArrowUpRight } from "react-icons/lu";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-// PROJECT DATA
+
 const projectsData = [
   {
     name: "Framez Social App",
@@ -17,31 +17,31 @@ const projectsData = [
   },
   {
     name: "HNG Ticket App",
-    image: "/images/ticket-app.png",
+    image: "/images/Ticket.png",
     description:
       "TicketFlow: A ticket management web app with full CRUD, responsive design, simulated authentication, and dashboard features — built with React and Vite.",
     skills: ["React", "JavaScript", "Vite", "UI Design"],
     mainLink: "https://github.com/Kimathii/HNG-Ticket-App",
   },
   {
-    name: "My Profile Card",
-    image: "/images/profile-card.png",
+    name: "Profile Card",
+    image: "/images/ProfileCard.png",
     description:
       "A responsive profile card UI built as part of the HNG Stage 0 frontend challenge, including personal details and semantic markup.",
     skills: ["HTML", "CSS", "JavaScript"],
     mainLink: "https://github.com/Kimathii/HNG-Stage0-Profile_Card",
   },
   {
-    name: "My Receipt Gen",
-    image: "/images/receipt-gen.png",
+    name: "Receipt Gen",
+    image: "/images/Receipt.png",
     description:
       "A React + Vite receipt generator application that lets users dynamically create receipts via a web interface, deployed to a public link.",
     skills: ["React", "Vite", "JavaScript"],
     mainLink: "https://github.com/Kimathii/My-Receipt-Gen",
   },
   {
-    name: "Portfolio (Mathias)",
-    image: "/images/portfolio.png",
+    name: "My Portfolio",
+    image: "/images/Portfolio.png",
     description:
       "My personal portfolio website — under active development — showcasing my career, projects, and skills.",
     skills: ["Next.js", "React", "Tailwind CSS"],
