@@ -3,6 +3,7 @@ import Hero from "@/components/hero";
 import Projects from "@/components/projects";
 import About from "@/components/about";
 import Experience from "@/components/experience";
+import Contact from "@/components/contact";
 
 export default function Home() {
   return (
@@ -12,9 +13,7 @@ export default function Home() {
      <About />
      <Experience />
       <Projects />
-      <div id="contact" className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-900">
-        <h1 className="text-4xl">Contact Section</h1>
-      </div>
+      <Contact />
     </main>
   );
 }
