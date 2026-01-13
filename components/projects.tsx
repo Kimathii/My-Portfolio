@@ -53,18 +53,35 @@ const Projects = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeSlide, setActiveSlide] = useState(0);
   const [showDots, setShowDots] = useState(true);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   const totalSlides = projectsData.length + 1; // +1 for intro slide
 
-  // Scroll to specific slide
+  useEffect(() => {
+    const checkDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+    
+    checkDesktop();
+    window.addEventListener("resize", checkDesktop);
+    return () => window.removeEventListener("resize", checkDesktop);
+  }, []);
+
+  // Scroll to specific slide (Desktop only mainly, but can work on mobile if we want)
   const scrollToSlide = (slideIndex: number) => {
     if (!containerRef.current) return;
-    const containerTop = containerRef.current.offsetTop;
-    const containerHeight = containerRef.current.offsetHeight;
-    const scrollProgress = slideIndex / (totalSlides - 1);
-    const targetScroll = containerTop + containerHeight * scrollProgress;
-
-    window.scrollTo({ top: targetScroll, behavior: "smooth" });
+    
+    if (isDesktop) {
+        const containerTop = containerRef.current.offsetTop;
+        const containerHeight = containerRef.current.offsetHeight;
+        const scrollProgress = slideIndex / (totalSlides - 1);
+        const targetScroll = containerTop + containerHeight * scrollProgress;
+        window.scrollTo({ top: targetScroll, behavior: "smooth" });
+    } else {
+        // Mobile: Scroll to specific element ID or just rough position? 
+        // For now, disabling dot scroll on mobile as it's a vertical list.
+        // Or we could implement scrollIntoView logic for mobile sections.
+    }
   };
 
   const { scrollYProgress } = useScroll({
@@ -76,47 +93,62 @@ const Projects = () => {
 
   useEffect(() => {
     const unsubscribe = scrollYProgress.onChange((latest) => {
-      const slide = Math.round(latest * (totalSlides - 1));
-      setActiveSlide(slide);
-      setShowDots(latest > 0.02 && latest < 0.98);
+      if (isDesktop) {
+          const slide = Math.round(latest * (totalSlides - 1));
+          setActiveSlide(slide);
+          setShowDots(latest > 0.02 && latest < 0.98);
+      }
     });
     return () => unsubscribe();
-  }, [scrollYProgress, totalSlides]);
+  }, [scrollYProgress, totalSlides, isDesktop]);
 
   const floatingShapes = [
     [
-      { type: "circle", color: "bg-blue-500", size: "w-32 h-32", top: "20%", right: "15%", delay: 0 },
-      { type: "square", color: "bg-purple-500", size: "w-24 h-24", bottom: "30%", left: "10%", delay: 0.2 },
+      { type: "circle", color: "bg-blue-500", size: "w-16 h-16 lg:w-32 lg:h-32", top: "20%", right: "15%", delay: 0 },
+      { type: "square", color: "bg-purple-500", size: "w-12 h-12 lg:w-24 lg:h-24", bottom: "30%", left: "10%", delay: 0.2 },
     ],
     [
-      { type: "triangle", color: "bg-pink-500", size: "w-40 h-40", top: "15%", right: "20%", delay: 0 },
-      { type: "circle", color: "bg-cyan-500", size: "w-28 h-28", bottom: "25%", left: "15%", delay: 0.3 },
+      { type: "triangle", color: "bg-pink-500", size: "w-20 h-20 lg:w-40 lg:h-40", top: "15%", right: "20%", delay: 0 },
+      { type: "circle", color: "bg-cyan-500", size: "w-14 h-14 lg:w-28 lg:h-28", bottom: "25%", left: "15%", delay: 0.3 },
     ],
     [
-      { type: "square", color: "bg-yellow-500", size: "w-36 h-36", top: "25%", left: "10%", delay: 0.1 },
-      { type: "circle", color: "bg-green-500", size: "w-32 h-32", bottom: "20%", right: "12%", delay: 0.2 },
+      { type: "square", color: "bg-yellow-500", size: "w-18 h-18 lg:w-36 lg:h-36", top: "25%", left: "10%", delay: 0.1 },
+      { type: "circle", color: "bg-green-500", size: "w-16 h-16 lg:w-32 lg:h-32", bottom: "20%", right: "12%", delay: 0.2 },
     ],
     [
-      { type: "triangle", color: "bg-purple-500", size: "w-44 h-44", top: "18%", right: "18%", delay: 0 },
-      { type: "square", color: "bg-orange-500", size: "w-28 h-28", bottom: "28%", left: "8%", delay: 0.25 },
+      { type: "triangle", color: "bg-purple-500", size: "w-22 h-22 lg:w-44 lg:h-44", top: "18%", right: "18%", delay: 0 },
+      { type: "square", color: "bg-orange-500", size: "w-14 h-14 lg:w-28 lg:h-28", bottom: "28%", left: "8%", delay: 0.25 },
     ],
     [
-      { type: "circle", color: "bg-indigo-500", size: "w-36 h-36", top: "22%", left: "12%", delay: 0.15 },
-      { type: "triangle", color: "bg-rose-500", size: "w-32 h-32", bottom: "24%", right: "15%", delay: 0.1 },
+      { type: "circle", color: "bg-indigo-500", size: "w-18 h-18 lg:w-36 lg:h-36", top: "22%", left: "12%", delay: 0.15 },
+      { type: "triangle", color: "bg-rose-500", size: "w-16 h-16 lg:w-32 lg:h-32", bottom: "24%", right: "15%", delay: 0.1 },
     ],
     [
-      { type: "square", color: "bg-teal-500", size: "w-40 h-40", top: "20%", right: "10%", delay: 0.2 },
-      { type: "circle", color: "bg-amber-500", size: "w-30 h-30", bottom: "26%", left: "14%", delay: 0 },
+      { type: "square", color: "bg-teal-500", size: "w-20 h-20 lg:w-40 lg:h-40", top: "20%", right: "10%", delay: 0.2 },
+      { type: "circle", color: "bg-amber-500", size: "w-15 h-15 lg:w-30 lg:h-30", bottom: "26%", left: "14%", delay: 0 },
     ],
   ];
 
   return (
     <section id="projects" className="relative bg-black">
-      <div ref={containerRef} className="relative h-[600vh]">
-        <div className="sticky top-0 h-screen w-screen overflow-hidden">
-          <motion.div style={{ x }} className="flex h-full">
+      {/* 
+          Desktop: Height 600vh for scroll effect
+          Mobile: Auto height for natural vertical flow 
+      */}
+      <div ref={containerRef} className="relative min-h-screen lg:h-[600vh]">
+        {/*
+           Desktop: Sticky container
+           Mobile: Normal relative flow, allow vertical stack
+        */}
+        <div className="relative w-full overflow-hidden lg:sticky lg:top-0 lg:h-screen lg:w-screen">
+          
+          <motion.div 
+            style={{ x: isDesktop ? x : 0 }} 
+            className="flex flex-col lg:flex-row lg:h-full"
+          >
             {/* Intro Slide */}
-            <div className="relative w-screen h-screen shrink-0 flex items-center justify-center text-white">
+            <div className="relative w-full min-h-screen lg:w-screen lg:h-screen shrink-0 flex items-center justify-center text-white py-20 lg:py-0">
+               {/* Background Shapes */}
               {floatingShapes[0].map((shape, idx) => (
                 <motion.div
                   key={idx}
@@ -146,19 +178,20 @@ const Projects = () => {
                   </a>{" "}
                   — I'd be happy to share.
                 </p>
-                <button className="text-purple-500 font-semibold text-lg flex items-center gap-2 mx-auto hover:gap-4 transition-all">
+                {/* <button className="text-purple-500 font-semibold text-lg flex items-center gap-2 mx-auto hover:gap-4 transition-all">
                   See Projects <span>→</span>
-                </button>
+                </button> */}
               </div>
             </div>
 
             {/* Project Slides */}
             {projectsData.map((project, index) => (
-              <div key={index} className="relative w-screen h-screen shrink-0 flex items-center text-white px-8 lg:px-16">
+              <div key={index} className="relative w-full min-h-screen lg:w-screen lg:h-screen shrink-0 flex items-center text-white px-8 lg:px-16 py-20 lg:py-0 border-t lg:border-none border-white/10">
                 {floatingShapes[index + 1]?.map((shape, idx) => (
                   <motion.div
                     key={idx}
-                    className={`absolute ${shape.size} ${shape.color} opacity-60 blur-sm hidden lg:block`}
+                    // Removed 'hidden lg:block' to show on mobile now, but resized via the checks above
+                    className={`absolute ${shape.size} ${shape.color} opacity-60 blur-sm block`}
                     style={{
                       top: shape.top,
                       bottom: shape.bottom,
@@ -207,20 +240,23 @@ const Projects = () => {
                     </div>
                   </div>
 
-                  <div className="hidden lg:flex items-center justify-center">
+                  {/* Image Section */}
+                  <div className="flex items-center justify-center lg:justify-end">
                     <motion.div
-                      initial={{ opacity: 0, x: 100 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.8 }}
-                      className="relative"
+                      initial={{ opacity: 0, y: 50 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, ease: "easeOut" }}
+                      viewport={{ once: true, amount: 0.2 }}
+                      className="relative w-full max-w-md sm:max-w-lg lg:max-w-2xl"
                     >
                       <img
                         src={project.image}
                         alt={project.name}
-                        className="w-full h-auto max-w-2xl object-contain rounded-lg shadow-2xl"
+                        className="w-full h-auto object-contain rounded-lg shadow-2xl"
                       />
                     </motion.div>
                   </div>
+
                 </div>
               </div>
             ))}
@@ -228,8 +264,8 @@ const Projects = () => {
         </div>
       </div>
 
-      {/* Slide Navigation Dots */}
-      {showDots && (
+      {/* Slide Navigation Dots (Desktop Only) */}
+      {showDots && isDesktop && (
         <div className="fixed bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-50">
           {Array.from({ length: totalSlides }).map((_, index) => (
             <button
