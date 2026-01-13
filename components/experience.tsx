@@ -12,7 +12,7 @@ const experienceContent = {
     "My experience includes HTML, CSS, and JavaScript, building projects with React and Next.js, developing custom features and components, creating animations, and coding interactive layouts. I also have experience with TypeScript, Firebase, and modern frontend tooling.",
     "linkedin", // marker for LinkedIn paragraph
   ],
-  linkedInUrl: "https://www.linkedin.com/in/mathias-kimathi/",
+  linkedInUrl: "https://www.linkedin.com/in/echioda-mathias-431370253/",
   resumeUrl: "/resume.pdf",
   techStack: [
     { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },

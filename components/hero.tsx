@@ -43,7 +43,7 @@ const Hero = () => {
               Hi, I'm Mathias
               <br />
               <span className="text-3xl sm:text-4xl lg:text-7xl font-normal text-gray-300">
-                Web Developer
+                I'm a Web Developer
               </span>
             </h1>
             <p className="text-lg lg:text-xl text-gray-400 max-w-lg">
