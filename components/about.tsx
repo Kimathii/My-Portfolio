@@ -59,16 +59,14 @@ const About = () => {
             </div>
           </motion.div>
 
-          {/* Right side - Mature smooth reveal */}
-          <motion.div 
-            className="hidden lg:flex items-center justify-center"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            <motion.div 
-              className="relative w-full max-w-2xl aspect-square overflow-hidden rounded-lg shadow-2xl"
-              variants={matureReveal}
+          {/* Right side - Image Section showing on all screens */}
+          <div className="flex items-center justify-center lg:justify-end">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: true, amount: 0.2 }}
+              className="relative w-full max-w-md sm:max-w-lg lg:max-w-2xl aspect-square overflow-hidden rounded-lg shadow-2xl"
             >
               <Image
                 src={aboutContent.image}
@@ -78,7 +76,7 @@ const About = () => {
                 priority
               />
             </motion.div>
-          </motion.div>
+          </div>
 
         </div>
       </div>
