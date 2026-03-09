@@ -36,7 +36,7 @@ const Experience = () => {
   return (
     <section
       id="experience"
-      className="relative w-full min-h-screen bg-black text-white flex items-center justify-center overflow-hidden py-20"
+      className="relative w-full min-h-screen bg-white dark:bg-black text-black dark:text-white flex items-center justify-center overflow-hidden py-20 transition-colors duration-300"
     >
       <div className="max-w-6xl mx-auto px-8 lg:px-16 w-full">
         <motion.div
@@ -48,7 +48,7 @@ const Experience = () => {
         >
           {/* Tagline */}
           <motion.p
-            className="text-sm lg:text-base text-gray-400 uppercase tracking-widest"
+            className="text-sm lg:text-base text-black/60 dark:text-gray-400 uppercase tracking-widest"
             variants={fadeUp}
           >
             {experienceContent.tagline}
@@ -64,7 +64,7 @@ const Experience = () => {
 
           {/* Description */}
           <motion.div
-            className="flex flex-col gap-6 max-w-4xl text-base lg:text-lg text-gray-300 leading-relaxed"
+            className="flex flex-col gap-6 max-w-4xl text-base lg:text-lg text-black dark:text-gray-300 leading-relaxed font-medium lg:font-normal"
             variants={staggerContainer}
           >
             {experienceContent.description.map((item, index) =>
@@ -75,7 +75,7 @@ const Experience = () => {
                     href={experienceContent.linkedInUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-purple-500 hover:text-purple-400 underline"
+                    className="text-purple-600 dark:text-purple-500 hover:text-purple-500 dark:hover:text-purple-400 underline"
                   >
                     LinkedIn
                   </a>
@@ -104,16 +104,16 @@ const Experience = () => {
                   transition: { type: "spring", stiffness: 300 },
                 }}
               >
-                <div className="w-16 h-16 lg:w-20 lg:h-20 flex items-center justify-center bg-gray-900 rounded-lg p-3 transition-all group-hover:bg-gray-800 group-hover:ring-2 group-hover:ring-purple-500/40">
+                <div className="w-16 h-16 lg:w-20 lg:h-20 flex items-center justify-center bg-gray-100 dark:bg-gray-900 rounded-lg p-3 transition-all group-hover:bg-gray-200 dark:group-hover:bg-gray-800 group-hover:ring-2 group-hover:ring-purple-500/40">
                   <Image
                     src={tech.icon}
                     alt={tech.name}
                     width={80}
                     height={80}
-                    className="object-contain filter brightness-90 group-hover:brightness-110"
+                    className="object-contain filter brightness-90 dark:brightness-110"
                   />
                 </div>
-                <span className="text-xs lg:text-sm text-gray-400 group-hover:text-white transition-colors">
+                <span className="text-xs lg:text-sm text-black/70 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors">
                   {tech.name}
                 </span>
               </motion.div>
@@ -125,7 +125,7 @@ const Experience = () => {
             href={experienceContent.resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group text-white font-bold text-base lg:text-lg hover:text-purple-500 mt-8 transition-colors flex items-center gap-1"
+            className="group text-black dark:text-white font-bold text-base lg:text-lg hover:text-purple-600 dark:hover:text-purple-500 mt-8 transition-colors flex items-center gap-1"
             variants={fadeUp}
             whileHover={{ x: 3 }}
             transition={{ type: "spring", stiffness: 300 }}

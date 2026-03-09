@@ -130,7 +130,7 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="relative bg-black">
+    <section id="projects" className="relative bg-white dark:bg-black transition-colors duration-300">
       {/* 
           Desktop: Height 600vh for scroll effect
           Mobile: Auto height for natural vertical flow 
@@ -147,12 +147,12 @@ const Projects = () => {
             className="flex flex-col lg:flex-row lg:h-full"
           >
             {/* Intro Slide */}
-            <div className="relative w-full min-h-screen lg:w-screen lg:h-screen shrink-0 flex items-center justify-center text-white py-20 lg:py-0">
+            <div className="relative w-full min-h-screen lg:w-screen lg:h-screen shrink-0 flex items-center justify-center text-black dark:text-white py-20 lg:py-0">
                {/* Background Shapes */}
               {floatingShapes[0].map((shape, idx) => (
                 <motion.div
                   key={idx}
-                  className={`absolute ${shape.size} ${shape.color} opacity-70 blur-sm`}
+                  className={`absolute ${shape.size} ${shape.color} opacity-30 dark:opacity-70 blur-sm`}
                   style={{
                     top: shape.top,
                     bottom: shape.bottom,
@@ -171,9 +171,9 @@ const Projects = () => {
 
               <div className="max-w-4xl mx-auto px-8 text-center z-10">
                 <h2 className="text-5xl lg:text-7xl font-bold mb-6">Portfolio & Previous Projects</h2>
-                <p className="text-lg lg:text-xl text-gray-300 mb-8 leading-relaxed">
+                <p className="text-lg lg:text-xl text-black dark:text-gray-300 mb-8 leading-relaxed font-medium lg:font-normal">
                   I have built a variety of projects tailored to different aspects of each client business. If you'd like to see more examples beyond what's showcased here, feel free to{" "}
-                  <a href="#contact" className="text-purple-500 hover:text-purple-400 underline">
+                  <a href="#contact" className="text-purple-600 dark:text-purple-500 hover:text-purple-500 dark:hover:text-purple-400 underline">
                     get in touch
                   </a>{" "}
                   — I'd be happy to share.
@@ -186,12 +186,12 @@ const Projects = () => {
 
             {/* Project Slides */}
             {projectsData.map((project, index) => (
-              <div key={index} className="relative w-full min-h-screen lg:w-screen lg:h-screen shrink-0 flex items-center text-white px-8 lg:px-16 py-20 lg:py-0 border-t lg:border-none border-white/10">
+              <div key={index} className="relative w-full min-h-screen lg:w-screen lg:h-screen shrink-0 flex items-center text-black dark:text-white px-8 lg:px-16 py-20 lg:py-0 border-t lg:border-none border-black/5 dark:border-white/10">
                 {floatingShapes[index + 1]?.map((shape, idx) => (
                   <motion.div
                     key={idx}
                     // Removed 'hidden lg:block' to show on mobile now, but resized via the checks above
-                    className={`absolute ${shape.size} ${shape.color} opacity-60 blur-sm block`}
+                    className={`absolute ${shape.size} ${shape.color} opacity-20 dark:opacity-60 blur-sm block`}
                     style={{
                       top: shape.top,
                       bottom: shape.bottom,
@@ -211,12 +211,12 @@ const Projects = () => {
 
                 <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                   <div className="flex flex-col gap-6 z-10">
-                    <span className="text-sm text-gray-400 uppercase tracking-widest">Web Application</span>
+                    <span className="text-sm text-black/50 dark:text-gray-400 uppercase tracking-widest">Web Application</span>
                     <h3 className="text-4xl lg:text-6xl font-bold">{project.name}</h3>
-                    <p className="text-base lg:text-lg text-gray-300 leading-relaxed">{project.description}</p>
+                    <p className="text-base lg:text-lg text-black dark:text-gray-300 leading-relaxed font-medium lg:font-normal">{project.description}</p>
 
                     <div className="flex flex-col gap-3">
-                      <span className="font-semibold text-white">Built with:</span>
+                      <span className="font-semibold text-black dark:text-white">Built with:</span>
                       <div className="flex flex-wrap gap-2">
                         {project.skills.map((skill, idx) => (
                           <Badge key={idx} className="text-purple-400 bg-purple-500/10 border-purple-500/20">

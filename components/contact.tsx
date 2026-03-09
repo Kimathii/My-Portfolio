@@ -36,10 +36,10 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="relative w-full min-h-screen bg-black text-white flex items-center overflow-hidden py-20"
+      className="relative w-full min-h-screen bg-white dark:bg-black text-black dark:text-white flex items-center overflow-hidden py-20 transition-colors duration-300"
     >
       {/* Floating Illustration */}
-      <div className="absolute left-[-5%] top-1/2 -translate-y-1/2 w-125 h-125 lg:w-175 lg:h-175 opacity-30">
+      <div className="absolute left-[-5%] top-1/2 -translate-y-1/2 w-125 h-125 lg:w-175 lg:h-175 opacity-20 dark:opacity-30">
         <motion.img
           src={contactContent.floatingImage}
           alt="Contact illustration"
@@ -51,7 +51,7 @@ const Contact = () => {
 
       {/* Floating Shape */}
       <motion.div
-        className="absolute bottom-[15%] right-[10%] w-32 h-32 lg:w-40 lg:h-40 bg-linear-to-br from-gray-400 to-gray-600 opacity-80"
+        className="absolute bottom-[15%] right-[10%] w-32 h-32 lg:w-40 lg:h-40 bg-linear-to-br from-gray-200 to-gray-400 dark:from-gray-700 dark:to-gray-900 opacity-60 dark:opacity-80"
         style={{
           clipPath:
             "polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)",
@@ -82,7 +82,7 @@ const Contact = () => {
             </motion.h2>
 
             <motion.p
-              className="text-base lg:text-lg text-gray-300 leading-relaxed"
+              className="text-base lg:text-lg text-black dark:text-gray-300 leading-relaxed font-medium lg:font-normal"
               variants={fadeUp}
             >
               {contactContent.subtext}
@@ -91,7 +91,7 @@ const Contact = () => {
             {/* Email */}
             <motion.a
               href={`mailto:${contactContent.email}`}
-              className="text-2xl lg:text-4xl font-bold hover:text-purple-400 transition-colors"
+              className="text-2xl lg:text-4xl font-bold text-black dark:text-white hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
               variants={fadeUp}
               whileHover={{ x: 6 }}
               transition={{ type: "spring", stiffness: 300 }}
