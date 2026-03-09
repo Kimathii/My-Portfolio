@@ -16,7 +16,7 @@ const contactContent = {
     {
       name: "LinkedIn",
       icon: FiLinkedin,
-      url: "https://www.linkedin.com/in/echioda-mathias/",
+      url: "https://www.linkedin.com/in/echioda-mathias-jr/",
     },
     {
       name: "GitHub",
