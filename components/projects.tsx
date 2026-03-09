@@ -8,6 +8,14 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 const projectsData = [
   {
+    name: "My Portfolio",
+    image: "/images/Portfolio.png",
+    description:
+      "My personal portfolio website — under active development — showcasing my career, projects, and skills.",
+    skills: ["Next.js", "React", "Tailwind CSS"],
+    mainLink: "https://github.com/Kimathii/Mathias",
+  },
+  {
     name: "Framez Social App",
     image: "/images/Framez.png",
     description:
@@ -38,14 +46,6 @@ const projectsData = [
       "A React + Vite receipt generator application that lets users dynamically create receipts via a web interface, deployed to a public link.",
     skills: ["React", "Vite", "JavaScript"],
     mainLink: "https://github.com/Kimathii/My-Receipt-Gen",
-  },
-  {
-    name: "My Portfolio",
-    image: "/images/Portfolio.png",
-    description:
-      "My personal portfolio website — under active development — showcasing my career, projects, and skills.",
-    skills: ["Next.js", "React", "Tailwind CSS"],
-    mainLink: "https://github.com/Kimathii/Mathias",
   },
 ];
 

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { FiGithub, FiLinkedin } from "react-icons/fi";
 import { FaXTwitter } from "react-icons/fa6";
 import { motion } from "framer-motion";
+import { fadeUp, popIn, staggerContainer, staggerContainerSlow } from "@/lib/animations";
 
 // CONTACT CONTENT
 const contactContent = {
@@ -66,46 +67,69 @@ const Contact = () => {
           <div className="hidden lg:block" />
 
           {/* Contact Info */}
-          <div className="flex flex-col gap-8">
-            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight">
+          <motion.div
+            className="flex flex-col gap-8"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            <motion.h2
+              className="text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight"
+              variants={fadeUp}
+            >
               {contactContent.heading}
-            </h2>
+            </motion.h2>
 
-            <p className="text-base lg:text-lg text-gray-300 leading-relaxed">
+            <motion.p
+              className="text-base lg:text-lg text-gray-300 leading-relaxed"
+              variants={fadeUp}
+            >
               {contactContent.subtext}
-            </p>
+            </motion.p>
 
             {/* Email */}
-            <a
+            <motion.a
               href={`mailto:${contactContent.email}`}
               className="text-2xl lg:text-4xl font-bold hover:text-purple-400 transition-colors"
+              variants={fadeUp}
+              whileHover={{ x: 6 }}
+              transition={{ type: "spring", stiffness: 300 }}
             >
               {contactContent.email}
-            </a>
+            </motion.a>
 
             {/* Socials */}
-            <div className="flex flex-wrap gap-4 mt-4">
+            <motion.div
+              className="flex flex-wrap gap-4 mt-4"
+              variants={staggerContainerSlow}
+            >
               {contactContent.socials.map((social) => (
-                <Button
+                <motion.div
                   key={social.name}
-                  variant="outline"
-                  size="lg"
-                  className="bg-transparent border-white/20 hover:bg-white/10 hover:border-white/40"
-                  asChild
+                  variants={popIn}
+                  whileHover={{ y: -3, transition: { type: "spring", stiffness: 400 } }}
                 >
-                  <a
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2"
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="bg-transparent border-white/20 hover:bg-white/10 hover:border-white/40"
+                    asChild
                   >
-                    <social.icon className="h-5 w-5" />
-                    <span className="hidden sm:inline">{social.name}</span>
-                  </a>
-                </Button>
+                    <a
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2"
+                    >
+                      <social.icon className="h-5 w-5" />
+                      <span className="hidden sm:inline">{social.name}</span>
+                    </a>
+                  </Button>
+                </motion.div>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>

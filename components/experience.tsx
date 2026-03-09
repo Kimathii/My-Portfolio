@@ -2,6 +2,8 @@
 
 import { LuArrowUpRight } from "react-icons/lu";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { fadeUp, popIn, staggerContainer, staggerContainerSlow } from "@/lib/animations";
 
 // EXPERIENCE CONTENT
 const experienceContent = {
@@ -37,22 +39,37 @@ const Experience = () => {
       className="relative w-full min-h-screen bg-black text-white flex items-center justify-center overflow-hidden py-20"
     >
       <div className="max-w-6xl mx-auto px-8 lg:px-16 w-full">
-        <div className="flex flex-col items-center gap-8 lg:gap-12 text-center">
+        <motion.div
+          className="flex flex-col items-center gap-8 lg:gap-12 text-center"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+        >
           {/* Tagline */}
-          <p className="text-sm lg:text-base text-gray-400 uppercase tracking-widest">
+          <motion.p
+            className="text-sm lg:text-base text-gray-400 uppercase tracking-widest"
+            variants={fadeUp}
+          >
             {experienceContent.tagline}
-          </p>
+          </motion.p>
 
           {/* Title */}
-          <h2 className="text-4xl lg:text-6xl xl:text-7xl font-bold">
+          <motion.h2
+            className="text-4xl lg:text-6xl xl:text-7xl font-bold"
+            variants={fadeUp}
+          >
             {experienceContent.title}
-          </h2>
+          </motion.h2>
 
           {/* Description */}
-          <div className="flex flex-col gap-6 max-w-4xl text-base lg:text-lg text-gray-300 leading-relaxed">
+          <motion.div
+            className="flex flex-col gap-6 max-w-4xl text-base lg:text-lg text-gray-300 leading-relaxed"
+            variants={staggerContainer}
+          >
             {experienceContent.description.map((item, index) =>
               item === "linkedin" ? (
-                <p key={index}>
+                <motion.p key={index} variants={fadeUp}>
                   For a deeper look at my work and experience, visit my{" "}
                   <a
                     href={experienceContent.linkedInUrl}
@@ -63,21 +80,31 @@ const Experience = () => {
                     LinkedIn
                   </a>
                   .
-                </p>
+                </motion.p>
               ) : (
-                <p key={index}>{item}</p>
+                <motion.p key={index} variants={fadeUp}>
+                  {item}
+                </motion.p>
               )
             )}
-          </div>
+          </motion.div>
 
           {/* Tech Stack */}
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-8 lg:gap-12 mt-8 lg:mt-12">
+          <motion.div
+            className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-8 lg:gap-12 mt-8 lg:mt-12"
+            variants={staggerContainerSlow}
+          >
             {experienceContent.techStack.map((tech) => (
-              <div
+              <motion.div
                 key={tech.name}
                 className="flex flex-col items-center gap-3 group cursor-pointer"
+                variants={popIn}
+                whileHover={{
+                  scale: 1.12,
+                  transition: { type: "spring", stiffness: 300 },
+                }}
               >
-                <div className="w-16 h-16 lg:w-20 lg:h-20 flex items-center justify-center bg-gray-900 rounded-lg p-3 transition-all group-hover:bg-gray-800 group-hover:scale-110">
+                <div className="w-16 h-16 lg:w-20 lg:h-20 flex items-center justify-center bg-gray-900 rounded-lg p-3 transition-all group-hover:bg-gray-800 group-hover:ring-2 group-hover:ring-purple-500/40">
                   <Image
                     src={tech.icon}
                     alt={tech.name}
@@ -89,21 +116,24 @@ const Experience = () => {
                 <span className="text-xs lg:text-sm text-gray-400 group-hover:text-white transition-colors">
                   {tech.name}
                 </span>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           {/* Resume Link */}
-          <a
+          <motion.a
             href={experienceContent.resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="group text-white font-bold text-base lg:text-lg hover:text-purple-500 mt-8 transition-colors flex items-center gap-1"
+            variants={fadeUp}
+            whileHover={{ x: 3 }}
+            transition={{ type: "spring", stiffness: 300 }}
           >
             <span>View Full Resume</span>
             <LuArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
       </div>
     </section>
   );
