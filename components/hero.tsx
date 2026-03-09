@@ -115,7 +115,7 @@ const Hero = () => {
               className="text-base text-gray-300 leading-relaxed"
               variants={fadeIn}
             >
-              Outside of work, I enjoy football, exploring the outdoors, gaming, and experimenting with new tech.
+              Outside of work, I enjoy football, exploring the outdoors, chess, and experimenting with new tech.
             </motion.p>
           </motion.div>
         </motion.div>
