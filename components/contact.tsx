@@ -8,7 +8,7 @@ import { fadeUp, popIn, staggerContainer, staggerContainerSlow } from "@/lib/ani
 
 // CONTACT CONTENT
 const contactContent = {
-  heading: "What if your software guy was just one click away?",
+  heading: "What if your tech guy was just one click away?",
   subtext:
     "Whether you are starting a new project, collaborating, or simply saying hello, I would love to hear from you.",
   email: "mechioda@gmail.com",
