@@ -9,38 +9,38 @@ const Hero = () => {
   return (
     <section className="relative flex items-center justify-center min-h-screen w-full bg-white dark:bg-black text-black dark:text-white overflow-hidden transition-colors duration-300">
       {/* Decorative blurred code bars - Top Left */}
-      <div className="absolute top-6 left-6 space-y-4 opacity-70">
+      <div className="absolute top-6 left-6 space-y-4 opacity-40 dark:opacity-30">
         <motion.div
-          className="h-1.5 w-40 bg-purple-500/50 dark:bg-purple-500 blur-md"
+          className="h-1.5 w-40 bg-purple-500/40 dark:bg-purple-500/50 blur-md"
           animate={{ scaleX: [1, 1.15, 1], opacity: [0.7, 1, 0.7] }}
           transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="h-1.5 w-32 bg-blue-500/50 dark:bg-blue-500 blur-md"
+          className="h-1.5 w-32 bg-blue-500/40 dark:bg-blue-500/50 blur-md"
           animate={{ scaleX: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
         />
         <motion.div
-          className="h-1.5 w-36 bg-cyan-500/50 dark:bg-cyan-500 blur-md"
+          className="h-1.5 w-36 bg-cyan-500/40 dark:bg-cyan-500/50 blur-md"
           animate={{ scaleX: [1, 1.1, 1], opacity: [0.7, 1, 0.7] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
         />
       </div>
 
       {/* Decorative blurred code bars - Bottom Right */}
-      <div className="absolute bottom-10 right-10 space-y-4 opacity-70">
+      <div className="absolute bottom-10 right-10 space-y-4 opacity-40 dark:opacity-30">
         <motion.div
-          className="h-1.5 w-48 bg-purple-500/50 dark:bg-purple-500 blur-md"
+          className="h-1.5 w-48 bg-purple-500/40 dark:bg-purple-500/50 blur-md"
           animate={{ scaleX: [1, 1.15, 1], opacity: [0.7, 1, 0.7] }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
         />
         <motion.div
-          className="h-1.5 w-40 bg-cyan-500/50 dark:bg-cyan-500 blur-md"
+          className="h-1.5 w-40 bg-cyan-500/40 dark:bg-cyan-500/50 blur-md"
           animate={{ scaleX: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
           transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
         />
         <motion.div
-          className="h-1.5 w-44 bg-yellow-500/50 dark:bg-yellow-500 blur-md"
+          className="h-1.5 w-44 bg-yellow-500/40 dark:bg-yellow-500/50 blur-md"
           animate={{ scaleX: [1, 1.1, 1], opacity: [0.7, 1, 0.7] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
         />
@@ -80,7 +80,7 @@ const Hero = () => {
               Hi, I&apos;m Mathias
               <br />
               <motion.span
-                className="text-3xl sm:text-4xl lg:text-7xl font-normal text-black dark:text-gray-300"
+                className="text-2xl sm:text-3xl lg:text-5xl mt-2 block font-normal text-black dark:text-gray-300"
                 variants={fadeUp}
               >
                 I&apos;m a Web Developer

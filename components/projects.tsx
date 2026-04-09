@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { useEffect, useRef, useState } from "react";
 import { LuArrowUpRight } from "react-icons/lu";
 import { motion, useScroll, useTransform } from "framer-motion";
+import FloatingShapes3D from "./floating-shapes-3d";
 
 
 const projectsData = [
@@ -14,6 +15,23 @@ const projectsData = [
       "My personal portfolio website — under active development — showcasing my career, projects, and skills.",
     skills: ["Next.js", "React", "Tailwind CSS"],
     mainLink: "https://github.com/Kimathii/Mathias",
+  },
+  {
+    name: "SkillNest",
+    image: "/images/SkillNest.png",
+    description:
+      "A comprehensive learning resource platform designed to help users find, share, and organize educational content across various skills and programming languages.",
+    skills: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase"],
+    mainLink: "https://github.com/Mickyj70/SkillNest",
+  },
+  {
+    name: "Test Prep Ville",
+    image: "/images/TestPrepVille.png",
+    description:
+      "An online tutoring platform offering private, expert-led prep for GRE, GMAT, SAT, and more. Designed with a focus on user experience and seamless conversions.",
+    skills: ["Web Development", "UI/UX Design", "Frontend"],
+    mainLink: "https://testprepville.com",
+    linkText: "Check it out",
   },
   {
     name: "Framez Social App",
@@ -102,73 +120,17 @@ const Projects = () => {
     return () => unsubscribe();
   }, [scrollYProgress, totalSlides, isDesktop]);
 
-  const floatingShapes = [
-    [
-      { type: "circle", color: "bg-blue-500", size: "w-16 h-16 lg:w-32 lg:h-32", top: "20%", right: "15%", delay: 0 },
-      { type: "square", color: "bg-purple-500", size: "w-12 h-12 lg:w-24 lg:h-24", bottom: "30%", left: "10%", delay: 0.2 },
-    ],
-    [
-      { type: "triangle", color: "bg-pink-500", size: "w-20 h-20 lg:w-40 lg:h-40", top: "15%", right: "20%", delay: 0 },
-      { type: "circle", color: "bg-cyan-500", size: "w-14 h-14 lg:w-28 lg:h-28", bottom: "25%", left: "15%", delay: 0.3 },
-    ],
-    [
-      { type: "square", color: "bg-yellow-500", size: "w-18 h-18 lg:w-36 lg:h-36", top: "25%", left: "10%", delay: 0.1 },
-      { type: "circle", color: "bg-green-500", size: "w-16 h-16 lg:w-32 lg:h-32", bottom: "20%", right: "12%", delay: 0.2 },
-    ],
-    [
-      { type: "triangle", color: "bg-purple-500", size: "w-22 h-22 lg:w-44 lg:h-44", top: "18%", right: "18%", delay: 0 },
-      { type: "square", color: "bg-orange-500", size: "w-14 h-14 lg:w-28 lg:h-28", bottom: "28%", left: "8%", delay: 0.25 },
-    ],
-    [
-      { type: "circle", color: "bg-indigo-500", size: "w-18 h-18 lg:w-36 lg:h-36", top: "22%", left: "12%", delay: 0.15 },
-      { type: "triangle", color: "bg-rose-500", size: "w-16 h-16 lg:w-32 lg:h-32", bottom: "24%", right: "15%", delay: 0.1 },
-    ],
-    [
-      { type: "square", color: "bg-teal-500", size: "w-20 h-20 lg:w-40 lg:h-40", top: "20%", right: "10%", delay: 0.2 },
-      { type: "circle", color: "bg-amber-500", size: "w-15 h-15 lg:w-30 lg:h-30", bottom: "26%", left: "14%", delay: 0 },
-    ],
-  ];
-
   return (
     <section id="projects" className="relative bg-white dark:bg-black transition-colors duration-300">
-      {/* 
-          Desktop: Height 600vh for scroll effect
-          Mobile: Auto height for natural vertical flow 
-      */}
       <div ref={containerRef} className="relative min-h-screen lg:h-[600vh]">
-        {/*
-           Desktop: Sticky container
-           Mobile: Normal relative flow, allow vertical stack
-        */}
         <div className="relative w-full overflow-hidden lg:sticky lg:top-0 lg:h-screen lg:w-screen">
-          
+          <FloatingShapes3D scrollProgress={scrollYProgress} />
           <motion.div 
             style={{ x: isDesktop ? x : 0 }} 
-            className="flex flex-col lg:flex-row lg:h-full"
+            className="flex flex-col lg:flex-row lg:h-full relative z-10"
           >
             {/* Intro Slide */}
             <div className="relative w-full min-h-screen lg:w-screen lg:h-screen shrink-0 flex items-center justify-center text-black dark:text-white py-20 lg:py-0">
-               {/* Background Shapes */}
-              {floatingShapes[0].map((shape, idx) => (
-                <motion.div
-                  key={idx}
-                  className={`absolute ${shape.size} ${shape.color} opacity-30 dark:opacity-70 blur-sm`}
-                  style={{
-                    top: shape.top,
-                    bottom: shape.bottom,
-                    left: shape.left,
-                    right: shape.right,
-                    borderRadius: shape.type === "circle" ? "50%" : "8px",
-                    transform: shape.type === "triangle" ? "rotate(45deg)" : "rotate(0deg)",
-                  }}
-                  animate={{
-                    y: [0, -20, 0],
-                    rotate: shape.type === "square" ? [0, 15, 0] : [0, 0, 0],
-                  }}
-                  transition={{ duration: 4, repeat: Infinity, delay: shape.delay, ease: "easeInOut" }}
-                />
-              ))}
-
               <div className="max-w-4xl mx-auto px-8 text-center z-10">
                 <h2 className="text-5xl lg:text-7xl font-bold mb-6">Portfolio & Previous Projects</h2>
                 <p className="text-lg lg:text-xl text-black dark:text-gray-300 mb-8 leading-relaxed font-medium lg:font-normal">
@@ -187,28 +149,6 @@ const Projects = () => {
             {/* Project Slides */}
             {projectsData.map((project, index) => (
               <div key={index} className="relative w-full min-h-screen lg:w-screen lg:h-screen shrink-0 flex items-center text-black dark:text-white px-8 lg:px-16 py-20 lg:py-0 border-t lg:border-none border-black/5 dark:border-white/10">
-                {floatingShapes[index + 1]?.map((shape, idx) => (
-                  <motion.div
-                    key={idx}
-                    // Removed 'hidden lg:block' to show on mobile now, but resized via the checks above
-                    className={`absolute ${shape.size} ${shape.color} opacity-20 dark:opacity-60 blur-sm block`}
-                    style={{
-                      top: shape.top,
-                      bottom: shape.bottom,
-                      left: shape.left,
-                      right: shape.right,
-                      borderRadius: shape.type === "circle" ? "50%" : "8px",
-                      transform: shape.type === "triangle" ? "rotate(45deg)" : "rotate(0deg)",
-                    }}
-                    animate={{
-                      y: [0, -25, 0],
-                      x: [0, 15, 0],
-                      rotate: shape.type === "square" ? [0, 20, 0] : [0, 0, 0],
-                    }}
-                    transition={{ duration: 5, repeat: Infinity, delay: shape.delay, ease: "easeInOut" }}
-                  />
-                ))}
-
                 <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                   <div className="flex flex-col gap-6 z-10">
                     <span className="text-sm text-black/50 dark:text-gray-400 uppercase tracking-widest">Web Application</span>
@@ -234,7 +174,8 @@ const Projects = () => {
                           rel="noopener noreferrer"
                           className="text-purple-500 font-semibold flex items-center gap-2 hover:gap-4 transition-all"
                         >
-                          View the code <LuArrowUpRight className="w-4 h-4" />
+                          {/* @ts-ignore */}
+                          {project.linkText || "View the code"} <LuArrowUpRight className="w-4 h-4" />
                         </a>
                       )}
                     </div>

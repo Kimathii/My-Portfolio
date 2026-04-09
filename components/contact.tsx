@@ -8,7 +8,7 @@ import { fadeUp, popIn, staggerContainer, staggerContainerSlow } from "@/lib/ani
 
 // CONTACT CONTENT
 const contactContent = {
-  heading: "What if your tech guy was just one click away?",
+  heading: "Ready to bring your ideas to life? Let's connect.",
   subtext:
     "Whether you are starting a new project, collaborating, or simply saying hello, I would love to hear from you.",
   email: "mechioda@gmail.com",
@@ -39,7 +39,7 @@ const Contact = () => {
       className="relative w-full min-h-screen bg-white dark:bg-black text-black dark:text-white flex items-center overflow-hidden py-20 transition-colors duration-300"
     >
       {/* Floating Illustration */}
-      <div className="absolute left-[-5%] top-1/2 -translate-y-1/2 w-125 h-125 lg:w-175 lg:h-175 opacity-20 dark:opacity-30">
+      <div className="absolute left-[-5%] top-1/2 -translate-y-1/2 w-125 h-125 lg:w-175 lg:h-175 opacity-10 dark:opacity-20">
         <motion.img
           src={contactContent.floatingImage}
           alt="Contact illustration"
@@ -51,7 +51,7 @@ const Contact = () => {
 
       {/* Floating Shape */}
       <motion.div
-        className="absolute bottom-[15%] right-[10%] w-32 h-32 lg:w-40 lg:h-40 bg-linear-to-br from-gray-200 to-gray-400 dark:from-gray-700 dark:to-gray-900 opacity-60 dark:opacity-80"
+        className="absolute bottom-[15%] right-[10%] w-32 h-32 lg:w-40 lg:h-40 bg-linear-to-br from-gray-200 to-gray-400 dark:from-gray-700 dark:to-gray-900 opacity-40 dark:opacity-60"
         style={{
           clipPath:
             "polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%)",
