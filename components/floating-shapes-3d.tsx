@@ -1,9 +1,9 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float } from "@react-three/drei";
+import { Float, PerformanceMonitor, AdaptiveDpr, Preload } from "@react-three/drei";
 import { useTheme } from "next-themes";
-import { useEffect, useRef, useState, useMemo } from "react";
+import { useEffect, useRef, useState, useMemo, Suspense } from "react";
 import * as THREE from "three";
 
 const Shape = ({ position, rotation, scale, color, type }: any) => {
@@ -11,20 +11,18 @@ const Shape = ({ position, rotation, scale, color, type }: any) => {
     <Float speed={1.5} rotationIntensity={1.5} floatIntensity={2}>
       <mesh position={position} rotation={rotation} scale={scale}>
         {type === "box" && <boxGeometry args={[1, 1, 1]} />}
-        {type === "sphere" && <sphereGeometry args={[0.7, 32, 32]} />}
-        {type === "cone" && <coneGeometry args={[0.7, 1.4, 32]} />}
-        {type === "torus" && <torusGeometry args={[0.6, 0.2, 16, 32]} />}
+        {type === "sphere" && <sphereGeometry args={[0.7, 16, 16]} />}
+        {type === "cone" && <coneGeometry args={[0.7, 1.4, 16]} />}
+        {type === "torus" && <torusGeometry args={[0.6, 0.2, 12, 24]} />}
         {type === "octahedron" && <octahedronGeometry args={[0.8]} />}
         {type === "icosahedron" && <icosahedronGeometry args={[0.8]} />}
-        {/* Glass-like material */}
-        <meshPhysicalMaterial 
+        {/* Simplified material for performance */}
+        <meshStandardMaterial 
           color={color} 
-          roughness={0.1} 
-          metalness={0.1} 
-          transmission={0.8} 
-          thickness={0.5} 
-          clearcoat={1}
-          clearcoatRoughness={0.1}
+          roughness={0.2} 
+          metalness={0.1}
+          transparent={true}
+          opacity={0.6}
         />
       </mesh>
     </Float>
@@ -83,17 +81,17 @@ export default function FloatingShapes3D({ scrollProgress }: { scrollProgress?: 
     const types = ["box", "sphere", "cone", "torus", "octahedron", "icosahedron"];
     const colors = ["#a855f7", "#3b82f6", "#06b6d4", "#eab308", "#ec4899", "#22c55e", "#f97316", "#6366f1", "#14b8a6", "#f43f5e", "#f59e0b", "#8b5cf6"];
 
-    // 7 purely static background shapes to maintain depth
-    const statics = Array.from({ length: 7 }).map(() => ({
+    // 4 purely static background shapes to maintain depth
+    const statics = Array.from({ length: 4 }).map(() => ({
       type: types[Math.floor(Math.random() * types.length)],
       position: [(Math.random() - 0.5) * 20, (Math.random() - 0.5) * 15, -10 - Math.random() * 10], 
       color: colors[Math.floor(Math.random() * colors.length)]
     }));
 
-    // 20 dynamic shapes distributed along a 160-unit X-axis. 
+    // 12 dynamic shapes distributed along a 160-unit X-axis. 
     // They will be swept into the camera view as the user scrolls.
-    const movings = Array.from({ length: 20 }).map((_, i) => {
-      const xPos = -5 + (i * (160 / 20)) + (Math.random() - 0.5) * 4;
+    const movings = Array.from({ length: 12 }).map((_, i) => {
+      const xPos = -5 + (i * (160 / 12)) + (Math.random() - 0.5) * 4;
       return {
         type: types[Math.floor(Math.random() * types.length)],
         position: [xPos, (Math.random() - 0.5) * 12, -6 - Math.random() * 10],
@@ -112,13 +110,22 @@ export default function FloatingShapes3D({ scrollProgress }: { scrollProgress?: 
 
   return (
     <div className="absolute inset-0 z-0 pointer-events-none opacity-60 dark:opacity-80 transition-opacity duration-300">
-      <Canvas camera={{ position: [0, 0, 8], fov: 50 }} dpr={[1, 2]} gl={{ alpha: true }}>
+      <Canvas 
+        camera={{ position: [0, 0, 8], fov: 50 }} 
+        dpr={[1, 2]} 
+        gl={{ alpha: true, antialias: false, powerPreference: "high-performance" }} // Optimized for performance
+      >
+        <PerformanceMonitor onFallback={() => console.log('Performance fallback triggered')} />
+        <AdaptiveDpr pixelated />
+        
         <ambientLight intensity={ambientIntensity} />
         <directionalLight position={[10, 10, 5]} intensity={directionalIntensity} color="#ffffff" />
         <directionalLight position={[-10, -10, -5]} intensity={directionalIntensity * 0.5} color="#e0eaff" />
-        <directionalLight position={[0, 10, -10]} intensity={directionalIntensity * 0.3} color="#fce7f3" />
         
-        <ShapesScene staticShapes={staticShapes} movingShapes={movingShapes} scrollProgress={scrollProgress} />
+        <Suspense fallback={null}>
+          <ShapesScene staticShapes={staticShapes} movingShapes={movingShapes} scrollProgress={scrollProgress} />
+          <Preload all />
+        </Suspense>
       </Canvas>
     </div>
   );

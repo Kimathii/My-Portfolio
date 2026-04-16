@@ -1,7 +1,7 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, Suspense } from "react";
 import { LuArrowUpRight } from "react-icons/lu";
 import { motion, useScroll, useTransform } from "framer-motion";
 import FloatingShapes3D from "./floating-shapes-3d";
@@ -124,7 +124,9 @@ const Projects = () => {
     <section id="projects" className="relative bg-white dark:bg-black transition-colors duration-300">
       <div ref={containerRef} className="relative min-h-screen lg:h-[600vh]">
         <div className="relative w-full overflow-hidden lg:sticky lg:top-0 lg:h-screen lg:w-screen">
-          <FloatingShapes3D scrollProgress={scrollYProgress} />
+          <Suspense fallback={<div className="absolute inset-0 bg-transparent" />}>
+            <FloatingShapes3D scrollProgress={scrollYProgress} />
+          </Suspense>
           <motion.div 
             style={{ x: isDesktop ? x : 0 }} 
             className="flex flex-col lg:flex-row lg:h-full relative z-10"
