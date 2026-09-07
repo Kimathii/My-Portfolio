@@ -121,7 +121,7 @@ const Projects = () => {
   }, [scrollYProgress, totalSlides, isDesktop]);
 
   return (
-    <section id="projects" className="relative bg-white dark:bg-black transition-colors duration-300">
+    <section id="projects" className="relative bg-white dark:bg-black transition-colors duration-300 scroll-mt-16">
       <div ref={containerRef} className="relative min-h-screen lg:h-[600vh]">
         <div className="relative w-full overflow-hidden lg:sticky lg:top-0 lg:h-screen lg:w-screen">
           <Suspense fallback={<div className="absolute inset-0 bg-transparent" />}>
@@ -136,32 +136,29 @@ const Projects = () => {
               <div className="max-w-4xl mx-auto px-8 text-center z-10">
                 <h2 className="text-5xl lg:text-7xl font-bold mb-6">Portfolio & Previous Projects</h2>
                 <p className="text-lg lg:text-xl text-black dark:text-gray-300 mb-8 leading-relaxed font-medium lg:font-normal">
-                  I have built a variety of projects tailored to different aspects of each client business. If you'd like to see more examples beyond what's showcased here, feel free to{" "}
+                  I have built a variety of projects tailored to different aspects of each client business. If you&apos;d like to see more examples beyond what&apos;s showcased here, feel free to{" "}
                   <a href="#contact" className="text-purple-600 dark:text-purple-500 hover:text-purple-500 dark:hover:text-purple-400 underline">
                     get in touch
                   </a>{" "}
-                  — I'd be happy to share.
+                  — I&apos;d be happy to share.
                 </p>
-                {/* <button className="text-purple-500 font-semibold text-lg flex items-center gap-2 mx-auto hover:gap-4 transition-all">
-                  See Projects <span>→</span>
-                </button> */}
               </div>
             </div>
 
             {/* Project Slides */}
             {projectsData.map((project, index) => (
-              <div key={index} className="relative w-full min-h-screen lg:w-screen lg:h-screen shrink-0 flex items-center text-black dark:text-white px-8 lg:px-16 py-20 lg:py-0 border-t lg:border-none border-black/5 dark:border-white/10">
+              <div key={index} className="relative w-full min-h-screen lg:w-screen lg:h-screen shrink-0 flex items-center text-black dark:text-white px-8 lg:px-16 py-20 lg:py-0 border-t lg:border-none border-black/5 dark:border-white/10 group">
                 <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                   <div className="flex flex-col gap-6 z-10">
-                    <span className="text-sm text-black/50 dark:text-gray-400 uppercase tracking-widest">Web Application</span>
-                    <h3 className="text-4xl lg:text-6xl font-bold">{project.name}</h3>
+                    <span className="text-sm text-black/50 dark:text-gray-400 uppercase tracking-widest font-semibold">Web Application</span>
+                    <h3 className="text-4xl lg:text-6xl font-bold tracking-tight group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">{project.name}</h3>
                     <p className="text-base lg:text-lg text-black dark:text-gray-300 leading-relaxed font-medium lg:font-normal">{project.description}</p>
 
                     <div className="flex flex-col gap-3">
                       <span className="font-semibold text-black dark:text-white">Built with:</span>
                       <div className="flex flex-wrap gap-2">
                         {project.skills.map((skill, idx) => (
-                          <Badge key={idx} className="text-purple-400 bg-purple-500/10 border-purple-500/20">
+                          <Badge key={idx} className="text-purple-700 dark:text-purple-300 bg-purple-500/10 border-purple-500/20 px-3 py-1 text-xs">
                             {skill}
                           </Badge>
                         ))}
@@ -174,10 +171,11 @@ const Projects = () => {
                           href={project.mainLink}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-purple-500 font-semibold flex items-center gap-2 hover:gap-4 transition-all"
+                          className="inline-flex items-center gap-2 text-purple-600 dark:text-purple-400 hover:text-purple-500 font-semibold text-base group-hover:translate-x-1 transition-all"
                         >
                           {/* @ts-ignore */}
-                          {project.linkText || "View the code"} <LuArrowUpRight className="w-4 h-4" />
+                          <span>{project.linkText || "View the code"}</span>
+                          <LuArrowUpRight className="w-4 h-4" />
                         </a>
                       )}
                     </div>
@@ -190,12 +188,12 @@ const Projects = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.8, ease: "easeOut" }}
                       viewport={{ once: true, amount: 0.2 }}
-                      className="relative w-full max-w-md sm:max-w-lg lg:max-w-2xl"
+                      className="relative w-full max-w-md sm:max-w-lg lg:max-w-2xl rounded-2xl overflow-hidden shadow-2xl ring-1 ring-black/10 dark:ring-white/10"
                     >
                       <img
                         src={project.image}
                         alt={project.name}
-                        className="w-full h-auto object-contain rounded-lg shadow-2xl"
+                        className="w-full h-auto object-contain rounded-2xl group-hover:scale-105 transition-transform duration-500 ease-out"
                       />
                     </motion.div>
                   </div>

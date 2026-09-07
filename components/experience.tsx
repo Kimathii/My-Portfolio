@@ -36,7 +36,7 @@ const Experience = () => {
   return (
     <section
       id="experience"
-      className="relative w-full min-h-screen bg-white dark:bg-black text-black dark:text-white flex items-center justify-center overflow-hidden py-20 transition-colors duration-300"
+      className="relative w-full min-h-screen bg-white dark:bg-black text-black dark:text-white flex items-center justify-center overflow-hidden py-20 transition-colors duration-300 scroll-mt-16"
     >
       <div className="max-w-6xl mx-auto px-8 lg:px-16 w-full">
         <motion.div

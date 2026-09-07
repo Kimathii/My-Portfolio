@@ -4,6 +4,7 @@ import Image from "next/image";
 import ProfilePic from "@/public/images/profile.jpg";
 import { motion } from "framer-motion";
 import { fadeUp, fadeIn, staggerContainer } from "@/lib/animations";
+import { LuArrowDown, LuMail } from "react-icons/lu";
 
 const Hero = () => {
   return (
@@ -46,7 +47,7 @@ const Hero = () => {
         />
       </div>
 
-      {/* Large profile image as background element - Increased opacity for light mode */}
+      {/* Large profile image as background element */}
       <motion.div
         className="absolute inset-0 flex items-center justify-center opacity-25 dark:opacity-20 pointer-events-none"
         animate={{ y: [0, -12, 0] }}
@@ -72,7 +73,19 @@ const Hero = () => {
           animate="visible"
         >
           {/* Left side - Hero text */}
-          <motion.div className="space-y-6" variants={staggerContainer}>
+          <motion.div className="space-y-6 flex flex-col items-center lg:items-start" variants={staggerContainer}>
+            {/* Status Indicator */}
+            <motion.div
+              variants={fadeUp}
+              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 text-xs font-semibold backdrop-blur-xs"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+              </span>
+              Available for Opportunities
+            </motion.div>
+
             <motion.h1
               className="text-4xl sm:text-5xl lg:text-8xl font-bold leading-tight"
               variants={fadeUp}
@@ -86,12 +99,38 @@ const Hero = () => {
                 I&apos;m a Web Developer
               </motion.span>
             </motion.h1>
+
             <motion.p
               className="text-lg lg:text-xl text-black/80 dark:text-gray-400 max-w-lg"
               variants={fadeUp}
             >
               JavaScript Enthusiast, Creative Problem Solver
             </motion.p>
+
+            {/* Quick Action CTAs */}
+            <motion.div
+              variants={fadeUp}
+              className="flex flex-wrap gap-3.5 pt-2 justify-center lg:justify-start"
+            >
+              <motion.a
+                href="#projects"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+                className="px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-medium text-sm lg:text-base shadow-lg shadow-purple-500/25 transition-all flex items-center gap-2 cursor-pointer"
+              >
+                <span>Explore Projects</span>
+                <LuArrowDown className="w-4 h-4" />
+              </motion.a>
+              <motion.a
+                href="#contact"
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.97 }}
+                className="px-6 py-3 rounded-xl border border-gray-300 dark:border-white/15 hover:border-purple-500/50 hover:bg-gray-100 dark:hover:bg-white/5 text-black dark:text-white font-medium text-sm lg:text-base transition-all flex items-center gap-2 cursor-pointer"
+              >
+                <span>Get in Touch</span>
+                <LuMail className="w-4 h-4" />
+              </motion.a>
+            </motion.div>
           </motion.div>
 
           {/* Right side - Description */}
@@ -123,5 +162,6 @@ const Hero = () => {
     </section>
   );
 };
+
 
 export default Hero;

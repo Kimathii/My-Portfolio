@@ -97,7 +97,7 @@ export default function Certifications() {
   return (
     <section
       id="certifications"
-      className="relative w-full min-h-screen bg-white dark:bg-black text-black dark:text-white flex items-center justify-center overflow-hidden py-24 transition-colors duration-300"
+      className="relative w-full min-h-screen bg-white dark:bg-black text-black dark:text-white flex items-center justify-center overflow-hidden py-24 transition-colors duration-300 scroll-mt-16"
     >
       {/* Background Ambient Glow */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-500/5 dark:bg-purple-600/10 rounded-full blur-[140px] pointer-events-none" />
