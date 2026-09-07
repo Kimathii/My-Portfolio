@@ -2,18 +2,18 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  LuGraduationCap, 
-  LuAward, 
-  LuCircleCheck, 
-  LuExternalLink, 
-  LuCalendar, 
-  LuBuilding2, 
-  LuBookOpen, 
-  LuSparkles, 
+import {
+  LuGraduationCap,
+  LuAward,
+  LuCircleCheck,
+  LuExternalLink,
+  LuCalendar,
+  LuBuilding2,
+  LuBookOpen,
+  LuSparkles,
   LuShieldCheck,
   LuX,
-  LuEye
+  LuEye,
 } from "react-icons/lu";
 import { Badge } from "@/components/badge";
 import { fadeUp, popIn, staggerContainer } from "@/lib/animations";
@@ -58,16 +58,17 @@ const credentialsData: Credential[] = [
       "Algorithms",
       "System Architecture",
       "Hardware & IoT",
-      "Problem Solving"
+      "Problem Solving",
     ],
-    verificationNote: "Official academic transcripts & degree verification available upon request",
+    verificationNote:
+      "Official academic transcripts & degree verification available upon request",
   },
   {
     id: "hng-finalist-13",
     type: "certification",
     title: "HNG Internship 13 Finalist",
     subtitle: "Frontend Development Track",
-    issuer: "HNG Tech (Hotels.ng)",
+    issuer: "HNG Tech (HNG.tech)",
     issuerUrl: "https://hng.tech",
     date: "Dec 16, 2025",
     badgeText: "Top 450 of 12,362 (Top 3.6%)",
@@ -84,7 +85,7 @@ const credentialsData: Credential[] = [
       "TypeScript",
       "UI Engineering",
       "Performance Optimization",
-      "Agile Sprints"
+      "Agile Sprints",
     ],
     verificationNote: "Verified digital credential issued by HNG Tech",
   },
@@ -123,14 +124,18 @@ export default function Certifications() {
             className="text-4xl lg:text-6xl font-bold tracking-tight"
             variants={fadeUp}
           >
-            Education & <span className="text-purple-600 dark:text-purple-400">Certifications</span>
+            Education &{" "}
+            <span className="text-purple-600 dark:text-purple-400">
+              Certifications
+            </span>
           </motion.h2>
 
           <motion.p
             className="text-base lg:text-lg text-black/70 dark:text-gray-300 max-w-2xl leading-relaxed"
             variants={fadeUp}
           >
-            A strong foundation in Computer Engineering coupled with rigorous, real-world frontend development experience.
+            A strong foundation in Computer Engineering coupled with rigorous,
+            real-world frontend development experience.
           </motion.p>
         </motion.div>
 
@@ -165,7 +170,9 @@ export default function Certifications() {
                     </div>
                     <div>
                       <span className="text-xs font-semibold uppercase tracking-wider text-purple-600 dark:text-purple-400">
-                        {cred.type === "degree" ? "University Degree" : "Professional Certification"}
+                        {cred.type === "degree"
+                          ? "University Degree"
+                          : "Professional Certification"}
                       </span>
                       <div className="flex items-center gap-1.5 text-xs text-black/50 dark:text-gray-400 mt-0.5">
                         <LuCalendar className="w-3.5 h-3.5" />
@@ -295,7 +302,10 @@ export default function Certifications() {
                   )}
                 </div>
                 <div>
-                  <Badge variant="outline" className="text-xs border-purple-500/30 text-purple-600 dark:text-purple-300">
+                  <Badge
+                    variant="outline"
+                    className="text-xs border-purple-500/30 text-purple-600 dark:text-purple-300"
+                  >
                     {selectedCred.badgeText}
                   </Badge>
                   <h3 className="text-xl font-bold text-black dark:text-white mt-1">
@@ -306,9 +316,15 @@ export default function Certifications() {
 
               <div className="space-y-4 text-sm text-black/80 dark:text-gray-300">
                 <div className="bg-gray-50 dark:bg-zinc-800/50 p-4 rounded-xl space-y-1 border border-gray-100 dark:border-white/5">
-                  <p className="font-semibold text-black dark:text-white">{selectedCred.subtitle}</p>
-                  <p className="text-xs text-black/60 dark:text-gray-400">{selectedCred.issuer}</p>
-                  <p className="text-xs text-purple-600 dark:text-purple-400 font-medium">Issued / Completed: {selectedCred.date}</p>
+                  <p className="font-semibold text-black dark:text-white">
+                    {selectedCred.subtitle}
+                  </p>
+                  <p className="text-xs text-black/60 dark:text-gray-400">
+                    {selectedCred.issuer}
+                  </p>
+                  <p className="text-xs text-purple-600 dark:text-purple-400 font-medium">
+                    Issued / Completed: {selectedCred.date}
+                  </p>
                 </div>
 
                 <p className="leading-relaxed">{selectedCred.description}</p>
@@ -320,7 +336,10 @@ export default function Certifications() {
                   </h4>
                   <ul className="space-y-1.5 pl-2">
                     {selectedCred.keyHighlights.map((item, i) => (
-                      <li key={i} className="flex items-start gap-2 text-xs lg:text-sm">
+                      <li
+                        key={i}
+                        className="flex items-start gap-2 text-xs lg:text-sm"
+                      >
                         <LuCircleCheck className="w-4 h-4 text-purple-500 shrink-0 mt-0.5" />
                         <span>{item}</span>
                       </li>
