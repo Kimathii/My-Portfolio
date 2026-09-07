@@ -96,7 +96,7 @@ const Hero = () => {
                 className="text-2xl sm:text-3xl lg:text-5xl mt-2 block font-normal text-black dark:text-gray-300"
                 variants={fadeUp}
               >
-                I&apos;m a Web Developer
+                I&apos;m a Software Developer
               </motion.span>
             </motion.h1>
 
