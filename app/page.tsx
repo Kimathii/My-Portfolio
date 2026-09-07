@@ -3,6 +3,7 @@ import Hero from "@/components/hero";
 import Projects from "@/components/projects";
 import About from "@/components/about";
 import Experience from "@/components/experience";
+import Certifications from "@/components/certifications";
 import Contact from "@/components/contact";
 
 export default function Home() {
@@ -10,8 +11,9 @@ export default function Home() {
     <main className="min-h-screen">
       <Header />
       <Hero />
-     <About />
-     <Experience />
+      <About />
+      <Experience />
+      <Certifications />
       <Projects />
       <Contact />
     </main>

@@ -35,7 +35,7 @@ const Header: React.FC = () => {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex space-x-8 font-medium text-lg">
-          {["About", "Projects", "Contact"].map((item) => (
+          {["About", "Experience", "Certifications", "Projects", "Contact"].map((item) => (
             <motion.a
               key={item}
               href={`#${item.toLowerCase()}`}
@@ -107,7 +107,7 @@ const Header: React.FC = () => {
             animate="visible"
             exit={{ opacity: 0, height: 0, transition: { duration: 0.25, ease: "easeIn" } }}
           >
-            {["About", "Projects", "Contact"].map((item) => (
+            {["About", "Experience", "Certifications", "Projects", "Contact"].map((item) => (
               <motion.a
                 key={item}
                 href={`#${item.toLowerCase()}`}
