@@ -74,17 +74,6 @@ const Hero = () => {
         >
           {/* Left side - Hero text */}
           <motion.div className="space-y-6 flex flex-col items-center lg:items-start" variants={staggerContainer}>
-            {/* Status Indicator */}
-            <motion.div
-              variants={fadeUp}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 text-xs font-semibold backdrop-blur-xs"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-              </span>
-              Available for Opportunities
-            </motion.div>
 
             <motion.h1
               className="text-4xl sm:text-5xl lg:text-8xl font-bold leading-tight"
