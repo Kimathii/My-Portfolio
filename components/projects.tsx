@@ -42,6 +42,24 @@ const projectsData = [
     mainLink: "https://github.com/Kimathii/Framez-Stage-4-",
   },
   {
+    name: "SNK - Special Needs Kids",
+    image: "/images/SNK.png",
+    description:
+      "An inclusive, interactive platform thoughtfully crafted for children with special learning needs such as dyslexia, dyscalculia, and ADHD. Currently in active development.",
+    skills: ["Web Development", "UI/UX Design", "Accessibility"],
+    mainLink: "https://the-special-needs-kids-app.vercel.app/",
+    linkText: "Check it out",
+  },
+  {
+    name: "Astral Link",
+    image: "/images/Astral.png",
+    description:
+      "A sleek professional transaction network connecting property managers with top real estate agents for seamless collaboration. Set to become a fully client-facing platform. Currently in active development.",
+    skills: ["Web Development", "Networking", "UI/UX Design"],
+    mainLink: "https://the-astral-demo.vercel.app/",
+    linkText: "Check it out",
+  },
+  {
     name: "HNG Ticket App",
     image: "/images/Ticket.png",
     description:
