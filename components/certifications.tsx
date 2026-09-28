@@ -159,7 +159,7 @@ export default function Certifications() {
 
               <div>
                 {/* Header Meta: Icon + Type Badge + Date */}
-                <div className="flex items-start justify-between gap-4 mb-6">
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-purple-100 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 ring-1 ring-purple-500/20 group-hover:scale-110 transition-transform duration-300">
                       {cred.type === "degree" ? (
